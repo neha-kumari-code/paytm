@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-export const connect=async()=>{
+export const connectDB=async()=>{
     if(mongoose.connection.readyState===1)return;
-    await mongoose.connect(`${process.env.MONGO_URL}/paytm`);
+    await mongoose.connect(`${process.env.MONGO_URI}/paytm`);
 }
