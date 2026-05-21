@@ -18,7 +18,7 @@ export async function POST(req:NextRequest){
             return NextResponse.json({
                 success: false,
                 message: "Invalid input",
-                error: result.error.format()
+                error: result.error
             }, { status: 400 });
         }
         const { username, email, password } = result.data;
