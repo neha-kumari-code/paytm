@@ -22,8 +22,8 @@ export default async function Balance() {
 
   return (
   
-      <div>
-        <p className="font-semibold text-lg">Your Balance is {bal}</p>
+      <div className="">
+        <p className="font-semibold text-lg">Your Balance is ₹{bal.toLocaleString("en-IN")}</p>
       </div>
    
   );

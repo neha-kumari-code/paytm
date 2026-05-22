@@ -1,12 +1,13 @@
 type ButtonProps={
     text:string;
     onClickHandler:()=>void
+    isSmall?:boolean
 }
-export default function Button({text,onClickHandler}:ButtonProps){
+export default function Button({text,onClickHandler,isSmall}:ButtonProps){
     return <button
     onClick={onClickHandler}
-    className="
-    w-full
+    className={`
+    ${isSmall?"w-100":"w-full"}
     bg-gray-500
     text-white
     py-2
@@ -19,7 +20,7 @@ export default function Button({text,onClickHandler}:ButtonProps){
     transition-all
     duration-200
     cursor-pointer
-  ">
+  `}>
         {text}
     </button>
 }

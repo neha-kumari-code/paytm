@@ -14,7 +14,7 @@ export default function UsersClient({ users }: { users: User[] }) {
     const [search,setSearch]=useState("")
     const filteredUser=users.filter((u)=>u.username.toLowerCase().includes(search.toLowerCase()))
   return (
-    <div className="min-h-screen px-2 py-4 flex">
+    <div className="flex flex-col">
       <div className="w-full max-w-2xl">
 
         {/* Header */}
@@ -29,7 +29,7 @@ export default function UsersClient({ users }: { users: User[] }) {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="w-full px-2 py-2 mb-5 border rounded-sm shadow-sm 
-                     focus:outline-none focus:ring-2 focus:ring-blue-400"
+                     focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-700"
         />
 
         {/* User List */}
@@ -43,14 +43,14 @@ export default function UsersClient({ users }: { users: User[] }) {
               >
                 {/* Name */}
                 <div className="flex flex-col">
-                  <span className="font-md text-gray-800 text-lg">
+                  <span className="font-medium text-gray-800 text-lg">
                     {u.username}
                   </span>
                 </div>
 
                 {/* Button */}
                 <div className="shrink-0">
-                 <button className="bg-gray-500 cursor-pointer hover:bg-gray-800 text-white font-bold py-2 px-4 border border-gray-700 rounded">
+                 <button onClick={()=>router.push(`/sendMoney/${u._id}`)} className="bg-gray-500 cursor-pointer hover:bg-gray-800 text-white font-bold py-2 px-4 border border-gray-700 rounded">
   Send Money
 </button>
                 </div>

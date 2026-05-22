@@ -30,7 +30,7 @@ export async function POST(req:NextRequest){
         const session=await mongoose.startSession();
         session.startTransaction();
         // fetching the account 
-        const account=await Account.findById({userId});
+        const account=await Account.findOne({userId}).session(session);;
         if(!account || account.balance<amount){
             await session.abortTransaction();
             return NextResponse.json({
@@ -38,7 +38,7 @@ export async function POST(req:NextRequest){
                 message:'insufficient balance'
             })
         }
-        const toAccount=await Account.findById({userId:to});
+        const toAccount=await Account.findOne({userId:to}).session(session);;
         if(!toAccount){
             await session.abortTransaction();
             return NextResponse.json({
@@ -47,12 +47,12 @@ export async function POST(req:NextRequest){
             })
         }
         // perform the transfer
-        await Account.findByIdAndUpdate({userId},{
+        await Account.findOneAndUpdate({userId},{
             $inc:{
                 balance:-amount
             }
         }).session(session)
-        await Account.findByIdAndUpdate({userId:to},{
+        await Account.findOneAndUpdate({userId:to},{
             $inc:{
                 balance:amount
             }

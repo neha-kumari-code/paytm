@@ -26,7 +26,8 @@ export default function signUp(){
         console.log(error)
     }
     }
-    return <div className="bg-white shadow-[0_0_5px_rgba(0,0,0,0.4)] rounded-md flex flex-col gap-5 w-1/2 px-4 py-3">
+    return <div className="relative overflow-hidden  bg-linear-to-b from-zinc-100 via-gray-50 to-white text-gray-900  flex items-start justify-center bg-gray-50 w-full h-screen py-4">
+    <div className="bg-white shadow-[0_0_5px_rgba(0,0,0,0.4)] rounded-md flex flex-col gap-5 w-1/3 px-4 py-3">
             <div className="flex justify-center flex-col items-center">
             <Heading text="Sign Up" />
             <p className="text-gray-500">
@@ -45,7 +46,7 @@ export default function signUp(){
                 </div>
                 <div className="flex flex-col gap-0.5 w-full">
                     <Label text="Password" htmlFor="password" />
-                    <Input type="password"  id="password" value={password} onChangeHandler={(e)=>setPassword(e.target.value)} />
+                    <Input type="password"  id="password" value={password} onChangeHandler={(e)=>setPassword(e.target.value)} eyeIcon={true} />
                 </div>
             </div>
             {/* sign up  button */}
@@ -53,6 +54,7 @@ export default function signUp(){
                  <Button text="Sign Up" onClickHandler={signUpHandler}/>
                 <p className="text-gray-500">Already have an account? <a className="text-gray-800 underline" href="/signin">Sign in</a></p>
             </div>
+        </div>
         </div>
     
 }

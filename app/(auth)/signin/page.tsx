@@ -5,7 +5,6 @@ import Heading from "@/app/components/heading";
 import Input from "@/app/components/input";
 import Label from "@/app/components/label";
 import { useState } from "react";
-import axios from "axios";
 
 import { toast } from "react-toastify";
 import {useRouter} from 'next/navigation'
@@ -23,10 +22,12 @@ export default function SignIn(){
             toast.error("Invalid Credentals")
         }else {
       toast.success("Login successful");
-      router.push("/"); // redirect after login
+      router.push("/dashboard"); // redirect after login
+      router.refresh();
     }
     }
-    return <div className="bg-white shadow-[0_0_5px_rgba(0,0,0,0.4)] rounded-md flex flex-col gap-5 w-1/2 px-4 py-3">
+    return <div className="relative overflow-hidden  bg-linear-to-b from-zinc-100 via-gray-50 to-white text-gray-900  flex items-start justify-center bg-gray-50 w-full h-screen py-4">
+     <div className="bg-white shadow-[0_0_5px_rgba(0,0,0,0.4)] rounded-md flex flex-col gap-5 w-1/3 px-4 py-3">
             <div className="flex justify-center flex-col items-center">
             <Heading text="Sign In" />
             <p className="text-gray-500">
@@ -41,7 +42,7 @@ export default function SignIn(){
                 </div>
                 <div className="flex flex-col gap-0.5 w-full">
                     <Label text="Password" htmlFor="password" />
-                    <Input type="password"  id="password" value={password} onChangeHandler={(e)=>setPassword(e.target.value)} />
+                    <Input type="password"  id="password" value={password} onChangeHandler={(e)=>setPassword(e.target.value)} eyeIcon={true}/>
                 </div>
             </div>
             {/* sign up  button */}
@@ -50,5 +51,5 @@ export default function SignIn(){
                 <p className="text-gray-500">Don't have account? <a className="text-gray-800 underline" href="/signup">Sign Up</a></p>
             </div>
         </div>
-    
+    </div>
 }
